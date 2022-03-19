@@ -15,7 +15,7 @@ namespace WebAppHomeWork1.Controllers
             SearchNOKModel sn = new SearchNOKModel(number1, number2);
             result = sn.nok();
             ViewData["res"] = result;
-            return View(result);
+            return View();
         }
     }
 }

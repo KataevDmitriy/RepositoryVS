@@ -6,9 +6,9 @@ namespace WebApplication1.Controllers
     [Route("[controller]")]
     public class SearchNOK : Controller
     {
-        //https://localhost:7207/TestController1?number1=1&number2=2
+        //https://localhost:7207/SearchNOK?number1=1&number2=2
         [HttpGet(Name = "SearchNOK")]
-        public string Get(ulong number1 , ulong number2)
+        public box Get(ulong number1 , ulong number2)
         {
             //НОК наименьшее общее кратное
             ulong x = number1;
@@ -34,7 +34,10 @@ namespace WebApplication1.Controllers
                 }
                 if (exit) { break; }
             }
-            return String.Format("Для числа {0} и числа {1} НОК {2}", number1, number2 , result.ToString());
+            //return String.Format("Для числа {0} и числа {1} НОК {2}", number1, number2 , result.ToString());
+            box b = new box();
+            b.number = result;
+            return b;
         }
 
         private List<ulong> CreateNumberSeries(ulong number1, ulong number2)
@@ -49,4 +52,9 @@ namespace WebApplication1.Controllers
         }
         
     }
+    public class box
+    { 
+    public ulong number { get; set; }
+    }
+
 }
