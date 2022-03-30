@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -6,9 +7,15 @@ namespace WebApplication1.Controllers
     [Route("[controller]")]
     public class SearchNOK : Controller
     {
+        CreateRepository CreateRep;
+        public SearchNOK(CreateRepository createRep)
+        {
+            CreateRep = createRep;
+        }
         //https://localhost:7207/SearchNOK?number1=1&number2=2
+ /****************************************************************************************/
         [HttpGet(Name = "SearchNOK")]
-        public box Get(ulong number1 , ulong number2)
+        public NOKTemplateCreateDb Get(ulong number1 , ulong number2)
         {
             //НОК наименьшее общее кратное
             ulong x = number1;
@@ -35,8 +42,14 @@ namespace WebApplication1.Controllers
                 if (exit) { break; }
             }
             //return String.Format("Для числа {0} и числа {1} НОК {2}", number1, number2 , result.ToString());
-            box b = new box();
-            b.number = result;
+            NOKTemplateCreateDb b = new NOKTemplateCreateDb();
+            b.Number1 = number1;
+            b.Number2 = number2;
+            b.ReleaseDateTime = DateTime.Now;
+            b.Result = result;
+
+            CreateRep.Create(b);
+
             return b;
         }
 
@@ -50,11 +63,18 @@ namespace WebApplication1.Controllers
             }
             return list;
         }
-        
+        /****************************************************************************************/
+       /* [HttpGet(Name = "GetAllItemsDB")]
+        public IEnumerable<NOKTemplateCreateDb> Get()
+        {
+            return CreateRep.Get();
+        }*/
+        /****************************************************************************************/
+
     }
-    public class box
-    { 
-    public ulong number { get; set; }
-    }
+    /* public class box
+     { 
+     public ulong number { get; set; }
+     }*/
 
 }
