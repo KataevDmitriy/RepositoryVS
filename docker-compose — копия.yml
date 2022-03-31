@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  sqlserver1:
+    image: ${DOCKER_REGISTRY-}sqlwithdb
+    ports:
+    - "1433:1433"
+      
+
+  webapplication1:
+    image: ${DOCKER_REGISTRY-}webapplication1
+    ports:
+    - "80:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      
+  

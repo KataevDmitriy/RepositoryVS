@@ -1,0 +1,18 @@
+version: '2.3.3'
+
+services:
+  sqlserver1:
+    image: ${DOCKER_REGISTRY-}sqlwithdb
+    ports:
+    - "1433:1433"
+      
+
+  webapiforcompose:
+    image: ${DOCKER_REGISTRY-}web_api_for_compose
+    ports:
+    - "80:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      
+  
