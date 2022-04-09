@@ -1,6 +1,6 @@
 using WebApplication1;
 using Microsoft.EntityFrameworkCore;
-
+using WebApplication1.Logging;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +15,10 @@ builder.Services.AddDbContext<CreateDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EFWebApiConnection")));
 // "EFWebApiConnection": "Server=DESKTOP-UAFF35O\\SQLEXPRESS;Initial Catalog=NOKTemplateCreateDb;Trusted_Connection=True;MultipleActiveResultSets=true"
 builder.Services.AddTransient<CreateRepository>();
+
+builder.Logging.ClearProviders()
+    .AddDbLogger(configure => { });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

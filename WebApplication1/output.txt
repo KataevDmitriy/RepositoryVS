@@ -1,0 +1,5 @@
+
+Executed DbCommand (20ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [n].[Id], [n].[Number1], [n].[Number2], [n].[ReleaseDateTime], [n].[Result]
+FROM [NOKTemplateCreateDbs] AS [n]
+WHERE [n].[Id] = @__p_0

@@ -15,7 +15,8 @@ namespace WebApplication1.Controllers
         //https://localhost:7207/SearchNOK?number1=1&number2=2
  /****************************************************************************************/
         [HttpGet(Name = "SearchNOK")]
-        public NOKTemplateCreateDb Get(ulong number1 , ulong number2)
+        //public NOKTemplateCreateDb Get(ulong number1 , ulong number2)
+        public NOKTemplateCreateDb Get(ulong number1, ulong number2)
         {
             //НОК наименьшее общее кратное
             ulong x = number1;

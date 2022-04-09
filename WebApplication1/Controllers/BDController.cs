@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+
+
 
 namespace WebApplication1.Controllers
 {
@@ -25,7 +28,8 @@ namespace WebApplication1.Controllers
         {
            // todoItem.Result = 
             CreateRep.Create(todoItem);
-
+            
+            
         }
 
         [Route("ReadAllItemDB")]
@@ -36,6 +40,13 @@ namespace WebApplication1.Controllers
             return CreateRep.Get();
         }
 
+        [Route("ReadIdItemDB/{id}")]
+        [HttpGet]
+        //[HttpGet(Name = "GetAllItems")]
+        public object Get(int id)
+        {
+            return CreateRep.Get(id);
+        }
 
         [Route("Update")]
         [HttpPost]
@@ -51,9 +62,9 @@ namespace WebApplication1.Controllers
         }
          */
         [HttpDelete("Delete/{id}")]
-        public void Delete(int id)
+        public HttpStatusCode Delete(int id)
         {
-            CreateRep.Delete(id);
+           return CreateRep.Delete(id);
         }
 
     }

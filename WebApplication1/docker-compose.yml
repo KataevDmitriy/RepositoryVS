@@ -1,5 +1,3 @@
-version: '2.3.3'
-
 services:
   sqlserver1:
     image: ${DOCKER_REGISTRY-}sqlwithdb
@@ -9,10 +7,15 @@ services:
 
   webapiforcompose:
     image: ${DOCKER_REGISTRY-}web_api_for_compose
+    volumes:
+    - d:\PathToDocker:/LogWebAPI
     ports:
     - "80:80"
     build:
       context: .
       dockerfile: Dockerfile
+    
+   
+  
       
   
